@@ -2,16 +2,21 @@
 {
     // Требуется для формирования полного output пути
     let path = require('path');
-    let babel = require('babel');
     // Плагин для очистки выходной папки (bundle) перед созданием новой
     const CleanWebpackPlugin = require('clean-webpack-plugin');
+    var webpack = require('webpack');
+    var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
     // Путь к выходной папке
     const bundleFolder = "bundle/";
 
     module.exports = {
-        // Точка входа в приложение
-        entry: "./index.js",
+        
+        entry: {
+             'test': "./index.js",
+            'polyfills': './src/polyfills.ts',
+            'app': './src/main.ts'
+          },
 
         // Выходной файл
         output: {
@@ -19,22 +24,44 @@
             path: path.resolve(__dirname, bundleFolder)
         },
         plugins: [
-            new CleanWebpackPlugin([bundleFolder])
-        ],  
+            new CleanWebpackPlugin([bundleFolder]),
+            new webpack.ContextReplacementPlugin(
+                /angular(\\|\/)core/,
+                path.resolve(__dirname, 'src'), // каталог с исходными файлами
+                {} // карта маршрутов
+            ),
+            new webpack.optimize.CommonsChunkPlugin({
+                name: ['app', 'polyfills']
+            }),
+            new UglifyJSPlugin()
+        ],
+
         resolve: {
             modules: ['node_modules']
         },
         module: {
-            loaders: [
-                {
-                    test: /\.js/,
-                    loader: 'babel',
-                },
-                {
-                    test: /\.css$/,
-                    loader: 'style!css'
-                }
+            rules: [
+            // {
+            //     test: /\.js/,
+            //     use: [
+            //         {
+            //             loader: 'babel-loader',
+            //             options: { presets: ["env"] }
+            //         }
+            //     ]
+            // },
+            {
+                test: /\.ts$/, // определяем тип файлов
+                use: [
+                    {
+                        loader: 'awesome-typescript-loader',
+                        options: { configFileName: path.resolve(__dirname, 'src/tsconfig.json') }
+                    },
+                    'angular2-template-loader'
+                ]
+            }
             ]
+
         }
     };
 }
