@@ -1,0 +1,20 @@
+{
+  "name": "index.html",
+  "version": "1.0.0",
+  "description": "first try",
+  "main": "index.html",
+  "devDependencies": {
+  },
+  "scripts": {
+    "webpack-script": "webpack"
+  },
+  "-vs-binding": {
+    "BeforeBuild": [
+      "webpack-script"
+    ]
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+  }
+}

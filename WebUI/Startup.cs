@@ -35,6 +35,8 @@ namespace WebUI
             }
 
             app.UseMvc();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
         }
     }
 }
