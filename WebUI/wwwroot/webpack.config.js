@@ -14,13 +14,13 @@
 
         entry: {
             // 'test': "./index.js",
-            //'polyfills': './src/polyfills.ts',
+            'polyfills': './src/polyfills.ts',
             'app': './src/main.ts'
         },
 
         // Выходной файл
         output: {
-            filename: 'script.js',
+            filename: "[name].js",
             path: path.resolve(__dirname, bundleFolder)
         },
         plugins: [
@@ -31,14 +31,14 @@
                 {} // карта маршрутов
             ),
             new webpack.optimize.CommonsChunkPlugin({
-                name: ['app']
+                name: ['app', 'polyfills']
             }),
             new UglifyJSPlugin()
         ],
 
         resolve: {
-            modules: ['node_modules']
-        },
+            extensions: ['.ts', '.js']
+          },
         module: {
             rules: [
                 // {
