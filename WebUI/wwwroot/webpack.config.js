@@ -11,12 +11,12 @@
     const bundleFolder = "bundle/";
 
     module.exports = {
-        
+
         entry: {
-             'test': "./index.js",
-            'polyfills': './src/polyfills.ts',
+            // 'test': "./index.js",
+            //'polyfills': './src/polyfills.ts',
             'app': './src/main.ts'
-          },
+        },
 
         // Выходной файл
         output: {
@@ -31,7 +31,7 @@
                 {} // карта маршрутов
             ),
             new webpack.optimize.CommonsChunkPlugin({
-                name: ['app', 'polyfills']
+                name: ['app']
             }),
             new UglifyJSPlugin()
         ],
@@ -41,25 +41,25 @@
         },
         module: {
             rules: [
-            // {
-            //     test: /\.js/,
-            //     use: [
-            //         {
-            //             loader: 'babel-loader',
-            //             options: { presets: ["env"] }
-            //         }
-            //     ]
-            // },
-            {
-                test: /\.ts$/, // определяем тип файлов
-                use: [
-                    {
-                        loader: 'awesome-typescript-loader',
-                        options: { configFileName: path.resolve(__dirname, 'src/tsconfig.json') }
-                    },
-                    'angular2-template-loader'
-                ]
-            }
+                // {
+                //     test: /\.js/,
+                //     use: [
+                //         {
+                //             loader: 'babel-loader',
+                //             options: { presets: ["env"] }
+                //         }
+                //     ]
+                // },
+                {
+                    test: /\.ts$/, // определяем тип файлов
+                    use: [
+                        {
+                            loader: 'awesome-typescript-loader',
+                            options: { configFileName: path.resolve(__dirname, 'src/tsconfig.json') }
+                        },
+                        'angular2-template-loader'
+                    ]
+                }
             ]
 
         }
