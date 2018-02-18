@@ -8,28 +8,38 @@
     "build": "webpack"
   },
   "dependencies": {
+    "@angular/animations": "^5.2.5",
+    "@angular/cdk": "^5.2.1",
     "@angular/common": "~5.0.0",
     "@angular/compiler": "~5.0.0",
     "@angular/core": "~5.0.0",
     "@angular/forms": "~5.0.0",
+    "@angular/material": "^5.2.1",
     "@angular/platform-browser": "~5.0.0",
     "@angular/platform-browser-dynamic": "~5.0.0",
     "@angular/router": "~5.0.0",
     "core-js": "^2.4.1",
+    "mangol": "^1.0.0",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
+    "@types/node": "^8.0.47",
+    "angular2-template-loader": "^0.6.2",
+    "awesome-typescript-loader": "^3.3.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
-    "@types/node": "^8.0.47",
+    "file-loader": "^1.1.6",
+    "node-sass": "^4.7.2",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^6.0.6",
+    "svg-inline-loader": "^0.8.0",
     "typescript": "^2.6.0",
+    "uglifyjs-webpack-plugin": "^1.0.1",
+    "url-loader": "^0.6.2",
     "webpack": "^3.6.0",
-    "webpack-dev-server": "^2.9.1",
-    "angular2-template-loader": "^0.6.2",
-    "awesome-typescript-loader": "^3.3.0",
-    "uglifyjs-webpack-plugin": "^1.0.1"
+    "webpack-dev-server": "^2.9.1"
   },
   "-vs-binding": {
     "BeforeBuild": [

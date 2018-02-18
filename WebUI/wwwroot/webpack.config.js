@@ -21,7 +21,8 @@
         // Выходной файл
         output: {
             filename: "[name].js",
-            path: path.resolve(__dirname, bundleFolder)
+            path: path.resolve(__dirname, bundleFolder),
+            publicPath: '/bundle/'
         },
         plugins: [
             new CleanWebpackPlugin([bundleFolder]),
@@ -35,6 +36,7 @@
             }),
             new UglifyJSPlugin()
         ],
+        devtool:"source-map",
 
         resolve: {
             extensions: ['.ts', '.js']
@@ -59,6 +61,26 @@
                         },
                         'angular2-template-loader'
                     ]
+                },
+                {
+                    test: /\.scss$/,
+                    // exclude: /node_modules/,
+                    use: [
+                        // 'file-loader',
+                        // 'raw-loader',
+                        { loader: "style-loader"},
+                        { loader: "css-loader" }, 
+                        { loader: 'sass-loader', 
+                          options: {
+                            includePaths: ["node_modules"]
+                        }}
+                    ]
+                },
+                { test: /\.css$/, loader: 'css-loader' },
+                { test: /\.html$/, loader: 'raw-loader' },
+                {
+                    test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+                    use: ['file-loader','url-loader']
                 }
             ]
 
