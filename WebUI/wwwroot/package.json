@@ -24,6 +24,8 @@
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
+    "@types/jquery": "^3.3.0",
+    "@types/materialize-css": "^1.0.1",
     "@types/node": "^8.0.47",
     "angular2-template-loader": "^0.6.2",
     "awesome-typescript-loader": "^3.3.0",

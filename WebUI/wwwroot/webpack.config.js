@@ -2,10 +2,12 @@
 {
     // Требуется для формирования полного output пути
     let path = require('path');
+    let glob = require('glob');
     // Плагин для очистки выходной папки (bundle) перед созданием новой
     const CleanWebpackPlugin = require('clean-webpack-plugin');
     var webpack = require('webpack');
     var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+    const ProvidePlugin = require('webpack/lib/ProvidePlugin')
 
     // Путь к выходной папке
     const bundleFolder = "bundle/";
@@ -34,7 +36,11 @@
             new webpack.optimize.CommonsChunkPlugin({
                 name: ['app', 'polyfills']
             }),
-            new UglifyJSPlugin()
+            new UglifyJSPlugin(),
+            new ProvidePlugin({
+                "window.jQuery": "jquery",
+                Hammer: "hammerjs/hammer"
+            })
         ],
         devtool:"source-map",
 
@@ -72,7 +78,10 @@
                         { loader: "css-loader" }, 
                         { loader: 'sass-loader', 
                           options: {
-                            includePaths: ["node_modules"]
+                            sourceMap: true,
+                            includePaths: glob.sync(
+                              path.join(__dirname, '/node_modules/*')
+                            ).map((dir) => path.dirname(dir)),
                         }}
                     ]
                 },
