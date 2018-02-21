@@ -65,7 +65,7 @@
                 {
                     test: /\.scss$/,
                     // exclude: /node_modules/,
-                    use: [
+                    use: ['to-string-loader',
                         // 'file-loader',
                         // 'raw-loader',
                         { loader: "style-loader"},
@@ -76,7 +76,12 @@
                         }}
                     ]
                 },
-                { test: /\.css$/, loader: 'css-loader' },
+                { test: /\.css$/, 
+                    use: [
+                        'to-string-loader',
+                        'css-loader'
+                    ]
+                },
                 { test: /\.html$/, loader: 'raw-loader' },
                 {
                     test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
