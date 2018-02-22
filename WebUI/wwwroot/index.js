@@ -1,3 +1,6 @@
-// import 'main.css';
+require('jquery');
+require('materialize-css')
 
-document.getElementById(jopa);
+$(function () {
+    $("#menu-button").sideNav();
+});

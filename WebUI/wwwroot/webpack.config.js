@@ -17,7 +17,8 @@
         entry: {
             // 'test': "./index.js",
             'polyfills': './src/polyfills.ts',
-            'app': './src/main.ts'
+            'app': './src/main.ts',
+            'materialize': './index.js'
         },
 
         // Выходной файл
