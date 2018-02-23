@@ -8,8 +8,7 @@ const elem = document.getElementById('menu-button')!;
 
 @Component({
     selector: 'my-app',
-                //  <mangol></mangol>`,
-                templateUrl: './app.html',
+    templateUrl: './app.html',
     styleUrls: ['./style.scss'],
     encapsulation: ViewEncapsulation.None
 })
@@ -28,5 +27,4 @@ export class AppComponent implements OnInit {
             })
         });
     }
-    name= '';
 }
