@@ -3,11 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { AppComponent }   from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MangolModule } from 'mangol';
+import { MapComponent } from '../map/map.component';
+import { RegionListComponent } from '../listComponent/regionList.component';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
-    imports:      [ BrowserModule, FormsModule,BrowserAnimationsModule, MangolModule ],
-    declarations: [ AppComponent ],
+    imports:      [ BrowserModule, FormsModule,BrowserAnimationsModule, HttpClientModule ],
+    declarations: [ AppComponent, MapComponent, RegionListComponent ],
     bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

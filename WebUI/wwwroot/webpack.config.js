@@ -8,6 +8,7 @@
     var webpack = require('webpack');
     var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
     const ProvidePlugin = require('webpack/lib/ProvidePlugin')
+    const HtmlWebpackPlugin = require('html-webpack-plugin');
 
     // Путь к выходной папке
     const bundleFolder = "bundle/";
@@ -37,17 +38,20 @@
             new webpack.optimize.CommonsChunkPlugin({
                 name: ['app', 'polyfills']
             }),
-            new UglifyJSPlugin(),
+            new UglifyJSPlugin({ sourceMap: true }),
             new ProvidePlugin({
                 "window.jQuery": "jquery",
                 Hammer: "hammerjs/hammer"
+            }),
+            new HtmlWebpackPlugin({
+                template: 'index.html'
             })
         ],
-        devtool:"source-map",
+        devtool: "source-map",
 
         resolve: {
             extensions: ['.ts', '.js']
-          },
+        },
         module: {
             rules: [
                 // {
@@ -75,18 +79,21 @@
                     use: ['to-string-loader',
                         // 'file-loader',
                         // 'raw-loader',
-                        { loader: "style-loader"},
-                        { loader: "css-loader" }, 
-                        { loader: 'sass-loader', 
-                          options: {
-                            sourceMap: true,
-                            includePaths: glob.sync(
-                              path.join(__dirname, '/node_modules/*')
-                            ).map((dir) => path.dirname(dir)),
-                        }}
+                        { loader: "style-loader" },
+                        { loader: "css-loader" },
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sourceMap: true,
+                                includePaths: glob.sync(
+                                    path.join(__dirname, '/node_modules/*')
+                                ).map((dir) => path.dirname(dir)),
+                            }
+                        }
                     ]
                 },
-                { test: /\.css$/, 
+                {
+                    test: /\.css$/,
                     use: [
                         'to-string-loader',
                         'css-loader'
@@ -95,7 +102,7 @@
                 { test: /\.html$/, loader: 'raw-loader' },
                 {
                     test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
-                    use: ['file-loader','url-loader']
+                    use: ['file-loader', 'url-loader']
                 }
             ]
 
