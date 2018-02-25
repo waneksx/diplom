@@ -3,4 +3,5 @@ export class Region {
     getInfo(): string {
         return "this is :" + this.name;
     }
+    polygon : any;
 }

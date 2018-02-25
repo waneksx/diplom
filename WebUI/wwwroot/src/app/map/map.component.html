@@ -1,1 +1,15 @@
-<div #mapElement id='map' class="map"></div>
+<div class="row">
+    <div class="col s12">
+        <div #mapElement id='map' class="map"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col s6 xl4">
+        <button class="btn-floating btn-large waves-effect waves-light red" (click)="drawRegion()">
+            <i class="material-icons">create</i>
+        </button>
+        <button class="btn-floating btn-large waves-effect waves-light red" (click)="saveRegion()">
+            <i class="material-icons">save</i>
+        </button>
+    </div>
+</div>
